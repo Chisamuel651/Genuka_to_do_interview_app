@@ -1,0 +1,23 @@
+{
+    "tasks": [
+        {
+            "id": "1",
+            "title": "Design UI Mockups",
+            "status": "Open", 
+            "project": "Project A", 
+            "time": "2024-12-07T10:00:00Z", 
+            "participants": ["/avatar1.png", "/avatar2.jpg"], 
+            "completed": false
+        },
+        {
+            "id": "2",
+            "title": "Develop API Endpoints",
+            "status": "Closed", 
+            "project": "Project B", 
+            "time": "2024-12-06T14:00:00Z", 
+            "participants": ["/avatar1.png"], 
+            "completed": true
+        }
+    ],
+    "filters": ["All", "Open", "Closed", "Archived"]
+}
