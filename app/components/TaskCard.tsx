@@ -1,73 +1,32 @@
+'use client'
 import React from 'react'
 import Image from "next/image";
+import { ITask } from '@/type/task';
+import Task from './Task';
+import { updateTaskStatus } from '@/api';
 
-const TaskCard = () => {
+interface TodoListProps {
+  tasks: ITask[]
+  // onStatusChange: (id: number, completed: boolean) => void;
+}
+
+const TaskCard: React.FC<TodoListProps> = ({ tasks }) => {
+
+  const onStatusChange = async (id: number, completed: boolean) => {
+    try {
+      await updateTaskStatus(id, completed);
+      // Optionally, update local state here if you want to reflect changes immediately
+    } catch (error) {
+      console.error('Error updating task status:', error);
+    }
+  };
+  
   return (
-    <>
-      <div className="bg-white rounded-lg shadow-md p-5 flex flex-col gap-3 mb-4">
-        <div className="flex justify-between items-start">
-          <div>
-            <h3 className="text-lg font-semibold text-black">Review with Client</h3>
-            <p className="text-sm text-gray-500">Product Team</p>
-          </div>
-          <div className="flex items-center justify-center w-5 h-5 border-2 rounded-full border-gray-300">
-          </div>
-        </div>
-
-        <hr className="border-gray-200" />
-
-        <div className="flex justify-between items-center">
-          <div>
-            <p className="text-sm font-medium text-gray-500">Today</p>
-            <p className="text-sm text-gray-400">01:00 PM - 03:00 PM</p>
-          </div>
-          <div className="flex items-center -space-x-2">
-            <img
-              src="/avatar1.png"
-              alt="Avatar 1"
-              className="w-8 h-8 rounded-full border-2 border-white"
-            />
-            <img
-              src="avatar2.jpg"
-              alt="Avatar 2"
-              className="w-8 h-8 rounded-full border-2 border-white"
-            />
-          </div>
-        </div>
-      </div>
-
-      <div className="bg-white rounded-lg shadow-md p-5 flex flex-col gap-3 mb-4">
-        <div className="flex justify-between items-start">
-          <div>
-            <h3 className="text-lg font-semibold text-black">Review with Client</h3>
-            <p className="text-sm text-gray-500">Product Team</p>
-          </div>
-          <div className="flex items-center justify-center w-5 h-5 border-2 rounded-full border-gray-300">
-          </div>
-        </div>
-
-        <hr className="border-gray-200" />
-
-        <div className="flex justify-between items-center">
-          <div>
-            <p className="text-sm font-medium text-gray-500">Today</p>
-            <p className="text-sm text-gray-400">01:00 PM - 03:00 PM</p>
-          </div>
-          <div className="flex items-center -space-x-2">
-            <img
-              src="/avatar1.png"
-              alt="Avatar 1"
-              className="w-8 h-8 rounded-full border-2 border-white"
-            />
-            <img
-              src="avatar2.jpg"
-              alt="Avatar 2"
-              className="w-8 h-8 rounded-full border-2 border-white"
-            />
-          </div>
-        </div>
-      </div>
-    </>
+    <div className="space-y-4">
+      {tasks.map((task) => (
+        <Task key={task.id} task={task} onStatusChange={onStatusChange} />
+      ))}
+    </div>
 
   )
 }

@@ -31,7 +31,7 @@ export default function RootLayout({
       >
         <div className="min-h-screen flex flex-col items-center">
           <NavigationMenu />
-          <main>
+          <main className="font-sans">
             {children}
           </main>
           
