@@ -2,6 +2,7 @@
 
 import { updateTaskStatus } from '@/api';
 import { ITask } from '@/type/task'
+import { Check } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import React from 'react'
 
@@ -44,7 +45,10 @@ const Task: React.FC<TaskProps> = ({task, onStatusChange }) => {
                 }`}
                 onClick={handleCheckboxClick}
             >
-                {task.completed && <div className="bg-blue-500 w-3 h-3 rounded-full" />}
+                {task.completed ? (
+                  <Check className="text-white bg-blue-500 w-4 h-4" />
+                ) : null}
+
             </div>
           </div>
 
