@@ -7,19 +7,10 @@ import { updateTaskStatus } from '@/api';
 
 interface TodoListProps {
   tasks: ITask[]
-  // onStatusChange: (id: number, completed: boolean) => void;
+  onStatusChange: (id: number, completed: boolean) => void;
 }
 
-const TaskCard: React.FC<TodoListProps> = ({ tasks }) => {
-
-  const onStatusChange = async (id: number, completed: boolean) => {
-    try {
-      await updateTaskStatus(id, completed);
-      // Optionally, update local state here if you want to reflect changes immediately
-    } catch (error) {
-      console.error('Error updating task status:', error);
-    }
-  };
+const TaskCard: React.FC<TodoListProps> = ({ tasks, onStatusChange }) => {
   
   return (
     <div className="space-y-4">

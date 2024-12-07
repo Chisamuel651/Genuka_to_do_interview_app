@@ -5,12 +5,15 @@ import { useState } from "react"
 import AddTaskField from "./AddTaskField"
 import { ITask } from "@/type/task"
 
+interface AddTaskProps {
+    onAddTask: (task: ITask) => void;
+}
 
-const AddTask = () => {
+const AddTask: React.FC<AddTaskProps> = ({ onAddTask }) => {
     const [ modalOpen, setModalOpen ] = useState<boolean>(false)
 
     const handleAddTask = (task: ITask) => {
-        console.log('New Task Added:', task);
+        onAddTask(task)
         setModalOpen(false);
       };
 
