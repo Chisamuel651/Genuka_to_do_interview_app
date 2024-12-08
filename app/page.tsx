@@ -68,7 +68,7 @@ export default function Home() {
     <main className="max-w-4xl mx-auto mt-4 mb-10">
       <div className="text-center my-5 grid grid-cols-2 gap-4">
         <div className="text-start">
-          <h1 className="text-2xl font-bold">Today's Task</h1>
+          <h1 className="text-2xl font-bold">Today&apos;s Task</h1>
           <p className="text-1xl">Saturday, 07 Dec</p>
         </div>
         <div>
