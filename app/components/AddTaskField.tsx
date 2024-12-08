@@ -5,6 +5,7 @@ import { ITask } from '@/type/task';
 import { addTodo } from '@/api';
 import { useRouter } from "next/navigation"
 import { Loader } from 'lucide-react'; 
+import Image from 'next/image';
 
 interface AddTaskProps {
   onAddTask: (task: ITask) => void;
@@ -136,11 +137,12 @@ const AddTaskField: React.FC<AddTaskProps> = ({ onAddTask }) => {
         />
         <div className="flex mt-2 space-x-2">
           {participants.map((participant, index) => (
-            <img
+            <Image
               key={index}
               src={participant}
               alt={`Participant ${index + 1}`}
               className="w-10 h-10 rounded-full border"
+              width={10} height={10}
             />
           ))}
         </div>

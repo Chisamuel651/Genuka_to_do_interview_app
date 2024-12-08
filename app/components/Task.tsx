@@ -3,6 +3,7 @@
 import { updateTaskStatus } from '@/api';
 import { ITask } from '@/type/task'
 import { Check } from 'lucide-react';
+import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import React from 'react'
 
@@ -61,11 +62,12 @@ const Task: React.FC<TaskProps> = ({task, onStatusChange }) => {
             </div>
             <div className="flex items-center -space-x-2">
               {task.participants.map((avatar, index) => (
-                <img
+                <Image
                   key={index}
                   src={avatar}
                   alt={`Avatar ${index + 1}`}
                   className="w-8 h-8 rounded-full border-2 border-white"
+                  width={10} height={10}
                 />
               ))}
             </div>
