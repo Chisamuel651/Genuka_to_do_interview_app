@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import { ITask } from '@/type/task';
 import { addTodo } from '@/api';
 import { useRouter } from "next/navigation"
+import { Loader } from 'lucide-react'; 
 
 interface AddTaskProps {
   onAddTask: (task: ITask) => void;
@@ -17,6 +18,7 @@ const AddTaskField: React.FC<AddTaskProps> = ({ onAddTask }) => {
   const [participants, setParticipants] = useState<string[]>([]);
   const [completed, setCompleted] = useState(false);
   const router = useRouter();
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) {
@@ -41,6 +43,8 @@ const AddTaskField: React.FC<AddTaskProps> = ({ onAddTask }) => {
       alert('Please fill in all required fields');
       return;
     }
+
+    setIsLoading(true);
 
     const newTask: ITask = {
       id: Date.now(),
@@ -156,7 +160,11 @@ const AddTaskField: React.FC<AddTaskProps> = ({ onAddTask }) => {
         type="submit"
         className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600"
       >
-        Add Task
+        {isLoading ? (
+          <Loader className="animate-spin w-5 h-5 text-white" />
+        ) : (
+          'Add Task'
+        )}
       </button>
     </form>
   );

@@ -1,6 +1,6 @@
 import { ITask } from "./type/task";
 
-const baseUrl = 'http://localhost:3001';
+const baseUrl = 'https://genuka-to-do-interview-app-2.onrender.com';
 
 export const getAllTodos = async (): Promise<ITask[]> => {
     const res = await fetch(`${baseUrl}/tasks`, {cache: 'no-store'});
