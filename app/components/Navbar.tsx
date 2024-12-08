@@ -27,7 +27,7 @@ export default function NavigationMenu() {
                                 : "text-gray-500"
                             }`}
                     >
-                        Today's Task
+                        Today&apos;s Task
                     </Link>
 
                     <Link

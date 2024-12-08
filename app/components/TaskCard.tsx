@@ -1,9 +1,7 @@
 'use client'
 import React from 'react'
-import Image from "next/image";
 import { ITask } from '@/type/task';
 import Task from './Task';
-import { updateTaskStatus } from '@/api';
 
 interface TodoListProps {
   tasks: ITask[]
