@@ -1,5 +1,5 @@
 'use client'
-import React, { useEffect, useState } from "react";
+import React, { Suspense, useEffect, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import AddTask from "./components/AddTask";
 import TaskCard from "./components/TaskCard";
@@ -8,12 +8,14 @@ import { ITask } from "@/type/task";
 
 const statuses = ["all", "Open", "Closed", "Archived"];
 
-export default function Home() {
+export const dynamic = "force-dynamic";
+
+function HomeContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const [tasks, setTasks] = useState<ITask[]>([]);
   const [loading, setLoading] = useState(true);
-  const status = searchParams.get("status") || "all";
+  const status = searchParams?.get("status") || "all";
   const [counts, setCounts] = useState<{ [key: string]: number }>({});
 
   useEffect(() => {
@@ -101,5 +103,13 @@ export default function Home() {
         <TaskCard tasks={tasks} onStatusChange={handleTaskStatusChange} />
       )}
     </main>
+  );
+}
+
+export default function Home() {
+  return (
+    <Suspense fallback={<p>Loading page...</p>}>
+      <HomeContent />
+    </Suspense>
   );
 }
